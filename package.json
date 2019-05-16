@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "react-dev": "webpack -d --watch",
-    "seed": "mysql -u root < schema.sql",
+    "seed": "mysql -u root < schema.sql -p",
     "sql": "mysql -u root -p"
   },
   "dependencies": {
