@@ -1,6 +1,6 @@
 var path = require('path');
-var SRC_DIR = path.join(__dirname, '/client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
+var SRC_DIR = path.join(__dirname, 'client/src');
+var DIST_DIR = path.join(__dirname, 'client/public');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
@@ -14,7 +14,7 @@ module.exports = {
         test: /\.jsx?/,
         include: SRC_DIR,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['react', 'es2015']
         }
       }

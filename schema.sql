@@ -24,7 +24,7 @@ INSERT INTO photos (
     unrelatedReport,
     inappropriateReport,
     dislike
-  ) VALUES (
+) VALUES (
     1,
     "kinjo",
     "https://resizer.otstatic.com/v2/photos/large/24947294.jpg",
@@ -32,4 +32,4 @@ INSERT INTO photos (
     1,
     1,
     false
-  );
+);

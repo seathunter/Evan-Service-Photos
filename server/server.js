@@ -1,12 +1,9 @@
 const express = require('express');
-const app = express();
 const port = 3050;
-var db = require('../database');
-
-
+const db = require('../database');
 const app = express();
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/../client/public'));
 
 // app.get('/photos', (req, res) => res.send('Hello World!'));
 
