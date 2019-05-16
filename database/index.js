@@ -11,19 +11,28 @@ connection.connect(err => {
   console.log('mysql connected!');
 });
 
-// var getAllUsers = function (callback) {
-//   connection.query(`SELECT * FROM users`, (error, results, fields) => {
-//     if (error) throw error;
-//     callback(results);
-//   });
-// };
+var getAllPhotos = function (callback) {
+  // `SELECT * FROM users WHERE id IS 1`
+  connection.query(`SELECT * FROM photos where id = 1`, (error, results, fields) => {
+    if (error) throw error;
+    console.log('getallphotos cb', results);
+    callback(results);
+  });
+};
 
-// // As a user, when I enter my name and click "Get Balance," I 
-// // expect to see my current balance 
-// ////// TODO - and a list of other users, excluding myself.
-// var getUserData = (callback, username) => {
-//   connection.query(`SELECT balance FROM ${username}`, (error, results, fields) => {
-//     if (error) throw error;
-//     callback(results);
-//   });
-// }
+var sendUnrelatedReport = (callback, id) => {
+  connection.query(`UPDATE photos SET col1 = col1 + 1`, (error, results, fields) => {
+    if (error) throw error;
+    callback(results);
+  });
+}
+
+var sendInappropriateReport = (callback, id) => {
+  connection.query(`SELECT balance FROM ${username}`, (error, results, fields) => {
+    if (error) throw error;
+    callback(results);
+  });
+}
+module.exports.getAllPhotos = getAllPhotos;
+module.exports.sendUnrelatedReport = sendUnrelatedReport;
+module.exports.sendInappropriateReport = sendInappropriateReport;
