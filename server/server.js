@@ -7,6 +7,7 @@ app.use(express.static(__dirname + '/../client/public'));
 
 app.get('/photos', (req, res) => {
   // console.log(typeof db.getAllPhotos);
+  res.status(200);
   res.send(db.getAllPhotos((results) => {
     console.log('app.get cb', results);
     return results;
