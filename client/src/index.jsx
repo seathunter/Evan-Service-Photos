@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import Axios from 'axios';
 
 import PhotoHeader from './components/PhotoHeader.jsx';
 import PhotoGrid from './components/PhotoGrid.jsx';
@@ -14,15 +15,30 @@ class App extends React.Component {
       photos: [],
       info: [],
       isLoading: true,
-    }
+    };
   }
   componentDidMount() {
+    const here = this;
+    let listing = window.location.pathname.slice(1);
+    Axios.get(`/photos/:${listing}`)
+      .then(function(allPhotos) {
+        here.setState({
+          photos: allPhotos.data,
+          isLoading: false,
+        });
+        console.log(here.state);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+    /*
     $.get({
       url: 'http://localhost:3050/photos/',
       dataType: 'json',
       success: allPhotos => { this.setState({ photos: allPhotos, isLoading: false }) },
       error: err => { console.log('Failed..', err) },
     });
+    */
   }
   render() {
     if (!this.state.isLoading) {

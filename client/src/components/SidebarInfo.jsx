@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Axios from 'axios';
 //import sidebarData from '../../../data/sidebarData.js';
 
 class SidebarInfo extends React.Component {
@@ -14,8 +15,23 @@ class SidebarInfo extends React.Component {
     this.handleView = this.handleView.bind(this);
   }
   componentDidMount() {
+    const here = this;
+    const listing = window.location.pathname.slice(1, window.location.pathname.length - 1);
+    Axios.get(`/photos/sidebar/${listing}`)
+      .then(function(result) {
+        console.log(result);
+        here.setState({
+          info: result.data,
+          isLoading: false,
+          map: (`https://www.google.com/maps?q=${String(result.data[0].address)}&output=embed`)
+        });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+    /*
     $.get({
-      url: 'http://localhost:3050/info/',
+      url: '/info',
       dataType: 'json',
       success: getInfo => {
         this.setState({
@@ -26,6 +42,7 @@ class SidebarInfo extends React.Component {
       },
       error: err => { console.log('Failed..', err) },
     });
+    */
   }
   handleView() {
     if (this.state.viewMore) {

@@ -10,8 +10,13 @@ connection.connect(err => {
   console.log('mysql connected!');
 });
 
-var getAllPhotos = function (callback) {
-  connection.query(`SELECT * FROM photos where id < 13`, (error, results, fields) => {
+var getAllPhotos = function (listing, callback) {
+  if (listing > 80) {
+    listing = 80;
+  }
+  let queryArgs = [listing, listing + 12];
+  let queryStatement = `SELECT * FROM photos where id > ? AND id < ?`;
+  connection.query(queryStatement, queryArgs, (error, results, fields) => {
     if (error) throw error;
     callback(results);
   });
@@ -26,3 +31,4 @@ var getAllInfo = function (callback) {
 
 module.exports.getAllPhotos = getAllPhotos;
 module.exports.getAllInfo = getAllInfo;
+module.exports.connection = connection;
