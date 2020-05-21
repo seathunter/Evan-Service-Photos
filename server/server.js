@@ -6,19 +6,34 @@ const cors = require('cors');
 const path = require('path');
 
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, '../client/public')));
+app.use('/:listingId', express.static(path.resolve(__dirname, '../client/public')));
 
-app.get('/photos', (req, res) => {
-  db.getAllPhotos((results) => {
-    res.status(200);
-    res.send(results);
+app.get('/photos/:listingId', (req, res) => {
+  let listing = Number(req.params.listingId.slice(1));
+  if (listing > 80) {
+    listing = 80;
+  }
+  const queryStatement = 'SELECT * FROM photos where id < ? AND id > ?';
+  const queryArgs = [listing + 11, listing - 1];
+  db.connection.query(queryStatement, queryArgs, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
   });
 });
 
-app.get('/info', (req, res) => {
-  db.getAllInfo((results) => {
-    res.status(200);
-    res.send(results);
+app.get('/photos/sidebar/:listingId', (req, res) => {
+  const listing = Number(req.params.listingId);
+  const queryStatement = 'SELECT * FROM info where id = ?';
+  const queryArgs = [listing];
+  db.connection.query(queryStatement, queryArgs, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
   });
 });
 

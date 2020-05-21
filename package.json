@@ -11,9 +11,11 @@
     "build": "webpack -d",
     "seed": "mysql -u root < schema.sql -p",
     "sql": "mysql -u root -p",
-    "test": "jest"
+    "test": "jest",
+    "photoseed": "node photoseed.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^6.4.1",
@@ -21,14 +23,14 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "webpack": "^2.7.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
