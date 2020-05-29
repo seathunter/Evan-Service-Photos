@@ -10,12 +10,9 @@ app.use('/:listingId', express.static(path.resolve(__dirname, '../client/public'
 
 app.get('/photos/:listingId', (req, res) => {
   let listing = Number(req.params.listingId.slice(1));
-  if (listing > 80) {
-    listing = 80;
-  }
-  const queryStatement = 'SELECT * FROM photos where id < ? AND id > ?';
-  const queryArgs = [listing + 11, listing - 1];
-  db.connection.query(queryStatement, queryArgs, (err, result) => {
+  const queryArgs = [listing];
+  const queryStatement = 'SELECT * FROM photos where id = $1';
+  db.client.query(queryStatement, queryArgs, (err, result) => {
     if (err) {
       res.send(err);
     } else {
@@ -26,9 +23,9 @@ app.get('/photos/:listingId', (req, res) => {
 
 app.get('/photos/sidebar/:listingId', (req, res) => {
   const listing = Number(req.params.listingId);
-  const queryStatement = 'SELECT * FROM info where id = ?';
   const queryArgs = [listing];
-  db.connection.query(queryStatement, queryArgs, (err, result) => {
+  const queryStatement = 'SELECT * FROM info where id = $1';
+  db.client.query(queryStatement, queryArgs, (err, result) => {
     if (err) {
       res.send(err);
     } else {

@@ -19,11 +19,10 @@ class SidebarInfo extends React.Component {
     const listing = window.location.pathname.slice(1, window.location.pathname.length - 1);
     Axios.get(`/photos/sidebar/${listing}`)
       .then(function(result) {
-        console.log(result);
         here.setState({
-          info: result.data,
+          info: result.data.rows[0],
           isLoading: false,
-          map: (`https://www.google.com/maps?q=${String(result.data[0].address)}&output=embed`)
+          map: (`https://www.google.com/maps?q=${String(result.data.rows[0].address)}&output=embed`)
         });
       })
       .catch(function(err) {
@@ -66,7 +65,7 @@ class SidebarInfo extends React.Component {
                 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_location"><g id="ic_location"><rect id="boundary" x="0" y="0" width="24" height="24"></rect><path d="M12,9 C12.5522847,9 13,9.44771525 13,10 C13,10.5522847 12.5522847,11 12,11 C11.4477153,11 11,10.5522847 11,10 C11,9.44771525 11.4477153,9 12,9 L12,9 Z M12,7 C10.3431458,7 9,8.34314575 9,10 C9,11.6568542 10.3431458,13 12,13 C13.6568542,13 15,11.6568542 15,10 C15,8.34314575 13.6568542,7 12,7 Z" id="Shape" fill="#333333" fillRule="nonzero"></path><path d="M12,4 C15.3137085,4 18,6.6862915 18,10 C18,11.21 17.2,14 12,19.21 C6.8,14 6,11.21 6,10 C6,6.6862915 8.6862915,4 12,4 L12,4 Z M12,2 C7.581722,2 4,5.581722 4,10 C4,12.8133333 6.43333333,16.59 11.3,21.33 L11.3,21.33 C11.6888435,21.7111429 12.3111565,21.7111429 12.7,21.33 C17.5666667,16.59 20,12.8133333 20,10 C20,5.581722 16.418278,2 12,2 Z" id="Shape" fill="#333333" fillRule="nonzero"></path></g></g></g></svg>
               </div>
               <div className="sidebar-info-text">
-                <span style={{ color: '#da3743' }}>{this.state.info[0].address}</span>
+                <span style={{ color: '#da3743' }}>{this.state.info.address}</span>
               </div>
             </div>
           </div>
@@ -76,7 +75,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Cross street</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].crossStreet}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.crossstreet}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -85,7 +84,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Neighborhood</span>
-              <div className="sidebar-info-neighborhood">{this.state.info[0].neighborhood}</div>
+              <div className="sidebar-info-neighborhood">{this.state.info.neighborhood}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -94,7 +93,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Hours of operation</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].hoursOfOperation}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.hoursofoperation}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -103,7 +102,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Cuisines</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].cuisines}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.cuisines}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -112,7 +111,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Dining Style</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].diningStyle}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.diningstyle}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -121,7 +120,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Dress code</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].dressCode}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.dresscode}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -130,7 +129,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Payment options</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].paymentOptions}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.paymentoptions}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -139,7 +138,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Executive chef</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].executiveChef}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.executivechef}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -148,7 +147,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Additional</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].additional}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.additional}</div>
             </div>
           </div>
           <div>
@@ -166,7 +165,7 @@ class SidebarInfo extends React.Component {
                 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Symbols" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g id="icon/ic_location"><g id="ic_location"><rect id="boundary" x="0" y="0" width="24" height="24"></rect><path d="M12,9 C12.5522847,9 13,9.44771525 13,10 C13,10.5522847 12.5522847,11 12,11 C11.4477153,11 11,10.5522847 11,10 C11,9.44771525 11.4477153,9 12,9 L12,9 Z M12,7 C10.3431458,7 9,8.34314575 9,10 C9,11.6568542 10.3431458,13 12,13 C13.6568542,13 15,11.6568542 15,10 C15,8.34314575 13.6568542,7 12,7 Z" id="Shape" fill="#333333" fillRule="nonzero"></path><path d="M12,4 C15.3137085,4 18,6.6862915 18,10 C18,11.21 17.2,14 12,19.21 C6.8,14 6,11.21 6,10 C6,6.6862915 8.6862915,4 12,4 L12,4 Z M12,2 C7.581722,2 4,5.581722 4,10 C4,12.8133333 6.43333333,16.59 11.3,21.33 L11.3,21.33 C11.6888435,21.7111429 12.3111565,21.7111429 12.7,21.33 C17.5666667,16.59 20,12.8133333 20,10 C20,5.581722 16.418278,2 12,2 Z" id="Shape" fill="#333333" fillRule="nonzero"></path></g></g></g></svg>
               </div>
               <div className="sidebar-info-text">
-                <span style={{ color: '#da3743' }}>{this.state.info[0].address}</span>
+                <span style={{ color: '#da3743' }}>{this.state.info.address}</span>
               </div>
             </div>
           </div>
@@ -176,7 +175,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Cross street</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].crossStreet}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.crossstreet}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -185,7 +184,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Neighborhood</span>
-              <div className="sidebar-info-neighborhood">{this.state.info[0].neighborhood}</div>
+              <div className="sidebar-info-neighborhood">{this.state.info.neighborhood}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -194,7 +193,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Hours of operation</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].hoursOfOperation}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.hoursofoperation}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -203,7 +202,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Cuisines</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].cuisines}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.cuisines}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -212,7 +211,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Dining Style</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].diningStyle}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.diningstyle}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -221,7 +220,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Dress code</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].dressCode}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.dresscode}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -230,7 +229,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Payment options</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].paymentOptions}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.paymentoptions}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -239,7 +238,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Executive chef</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].executiveChef}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.executivechef}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -248,7 +247,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Additional</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].additional}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.additional}</div>
             </div>
           </div>
           <div className="sidebar-info-node">
@@ -258,7 +257,7 @@ class SidebarInfo extends React.Component {
             <div className="sidebar-info-text">
               <span>Website</span>
               <div>
-                <a className="sidebar-info-text-lower" href={this.state.info[0].website} style={{ color: '#da3743' }}>{this.state.info[0].website}</a>
+                <a className="sidebar-info-text-lower" href={this.state.info.website} style={{ color: '#da3743' }}>{this.state.info.website}</a>
               </div>
             </div>
           </div>
@@ -268,7 +267,7 @@ class SidebarInfo extends React.Component {
             </div>
             <div className="sidebar-info-text">
               <span>Phone number</span>
-              <div className="sidebar-info-text-lower">{this.state.info[0].phoneNumber}</div>
+              <div className="sidebar-info-text-lower">{this.state.info.phonenumber}</div>
             </div>
           </div>
           <div>
