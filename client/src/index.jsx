@@ -22,11 +22,13 @@ class App extends React.Component {
     let listing = window.location.pathname.slice(1);
     Axios.get(`/photos/:${listing}`)
       .then(function(allPhotos) {
+        console.log(allPhotos);
+        const p = allPhotos.data.rows[0];
+        const urlArray = [p.urlone, p.urltwo, p.urlthree, p.urlfour, p.urlfive, p.urlsix, p.urlseven, p.urleight, p.urlnine, p.urlten, p.urleleven, p.urltwelve];
         here.setState({
-          photos: allPhotos.data,
+          photos: urlArray,
           isLoading: false,
         });
-        console.log(here.state);
       })
       .catch(function(err) {
         console.log(err);

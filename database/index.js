@@ -1,29 +1,27 @@
-const mysql = require('mysql');
-const mysqlConfig = require('./config.js');
-const connection = mysql.createConnection(mysqlConfig);
+const { Client } = require('pg');
+const credentials = require('./config');
+const client = new Client(credentials);
 
-connection.connect(err => {
+client.connect((err) => {
   if (err) {
-    console.error('mysql connection error!');
-    return;
+    console.log(err);
+  } else {
+    console.log('connected to postgres');
   }
-  console.log('mysql connected!');
 });
 
 var getAllPhotos = function (listing, callback) {
-  if (listing > 80) {
-    listing = 80;
-  }
-  let queryArgs = [listing, listing + 12];
-  let queryStatement = `SELECT * FROM photos where id > ? AND id < ?`;
-  connection.query(queryStatement, queryArgs, (error, results, fields) => {
+  let queryArgs = [listing];
+  let queryStatement = `SELECT * FROM photos where id = $1`;
+  client.query(queryStatement, queryArgs, (error, results) => {
     if (error) throw error;
     callback(results);
   });
 };
 
-var getAllInfo = function (callback) {
-  connection.query(`SELECT * FROM info where id < 2`, (error, results, fields) => {
+var getAllInfo = function (listing, callback) {
+  const queryArgs = [listing];
+  client.query(`SELECT * FROM info where id = $1`, queryArgs, (error, results) => {
     if (error) throw error;
     callback(results);
   });
@@ -31,4 +29,4 @@ var getAllInfo = function (callback) {
 
 module.exports.getAllPhotos = getAllPhotos;
 module.exports.getAllInfo = getAllInfo;
-module.exports.connection = connection;
+module.exports.client = client;
