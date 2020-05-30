@@ -6,7 +6,7 @@ const { Parser } = require('json2csv');
 let writeData = () => {
   const csvParser = new Parser({ header: false });
   let date = new Date();
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 1000000; i++) {
     let urlArray = [];
     for (let j = 0; j < 12; j++) {
       let randomPic = Math.floor(Math.random() * 999);

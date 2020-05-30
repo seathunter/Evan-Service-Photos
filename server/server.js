@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const port = 3050;
 const db = require('../database');
