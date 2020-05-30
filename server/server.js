@@ -1,10 +1,10 @@
+require('newrelic');
 const express = require('express');
 const port = 3050;
 const db = require('../database');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-require('newrelic');
 
 app.use(cors());
 app.use('/:listingId', express.static(path.resolve(__dirname, '../client/public')));
