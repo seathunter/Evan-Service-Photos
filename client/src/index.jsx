@@ -19,8 +19,8 @@ class App extends React.Component {
   }
   componentDidMount() {
     const here = this;
-    let listing = window.location.pathname.slice(1);
-    Axios.get(`/photos/:${listing}`)
+    let listing = window.location.pathname.slice(9);
+    Axios.get(`/listing/photos/:${listing}`)
       .then(function(allPhotos) {
         console.log(allPhotos);
         const p = allPhotos.data.rows[0];

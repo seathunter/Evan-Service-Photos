@@ -7,9 +7,9 @@ const cors = require('cors');
 const path = require('path');
 
 app.use(cors());
-app.use('/:listingId', express.static(path.resolve(__dirname, '../client/public')));
+app.use('/listing/:listingId', express.static(path.resolve(__dirname, '../client/public')));
 
-app.get('/photos/:listingId', (req, res) => {
+app.get('/listing/photos/:listingId', (req, res) => {
   let listing = Number(req.params.listingId.slice(1));
   const queryArgs = [listing];
   const queryStatement = 'SELECT * FROM photos where id = $1';
@@ -22,7 +22,7 @@ app.get('/photos/:listingId', (req, res) => {
   });
 });
 
-app.get('/photos/sidebar/:listingId', (req, res) => {
+app.get('/listing/photos/sidebar/:listingId', (req, res) => {
   const listing = Number(req.params.listingId);
   const queryArgs = [listing];
   const queryStatement = 'SELECT * FROM info where id = $1';

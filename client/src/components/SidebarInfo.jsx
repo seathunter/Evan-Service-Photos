@@ -16,8 +16,8 @@ class SidebarInfo extends React.Component {
   }
   componentDidMount() {
     const here = this;
-    const listing = window.location.pathname.slice(1, window.location.pathname.length - 1);
-    Axios.get(`/photos/sidebar/${listing}`)
+    const listing = window.location.pathname.slice(9, window.location.pathname.length - 1);
+    Axios.get(`/listing/photos/sidebar/${listing}`)
       .then(function(result) {
         here.setState({
           info: result.data.rows[0],
