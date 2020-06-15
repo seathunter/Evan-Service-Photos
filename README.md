@@ -1,51 +1,58 @@
-# Free Seats
+# Food Finder
 
-> Project description
+Note: this is an alteration of the following repo by Matthew Diaz:
+https://github.com/freeseats/matthewjdiaz1-photo-service
 
-## Related Projects
+This repo is not intended for providing the functionality of the original repo, but for simulating and testing large scale deployment traffic.
 
-  - https://github.com/freeseats/exzerone-search-bar
-  - https://github.com/freeseats/Menu-Related-SideBar
-  - https://github.com/freeseats/slhodak-fec
-  - https://github.com/freeseats/wfong-service-reservations
+## Getting Started
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> edit database/config.js file by adding your mysql password
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
+* Clone this repo with the following command: 
+```
+  git clone https://github.com/AlphaOmegaTeam/Evan-Service-Photos.git
+```
+* Seed the database with the following two commands
+```
+  - seedTestP
+  - seedTestI
+```
+* Upload the data to postgres with the following command
+```
+  - log into desired postgres database
+  - from the directory of the schemas, enter $ \i bigSchema.sql
+```
+* Create a dump file from the postgres database
+```
+  - pg_dump -Fc dbname > dbname.dump
+```
+* Transfer the dump file to a separate instance
+```
+  - scp -i <keypair> SourceFile user@host:directory/TargetFile
+```
+* Restore the file in the new instance
+```
+  - pg_restore -d dbname dbname.dump
 ```
 
-> edit database/config.js file by adding your mysql password
-to seed database run the following
-```
-npm run seed
-```
 
-to create bundle.js and start the server run the following
-```
-npm run react-dev
-npm start
-```
+## Technologies Used
+* React
+* Postgres
+* Axios
+* Node
+* AWS (ec2)
+* New Relic
+* K6
+* Loader.io
+* Nginx
 
+## Authors
+
+Evan Schafer
+* [Github Profile](https://github.com/E-Schaferer)
+* [Linkedin Profile](www.linkedin.com/in/schaferer)
+
+## Original Author
+
+Matthew Diaz
+* [Github Profile](https://github.com/matthewjdiaz1)
