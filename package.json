@@ -20,7 +20,7 @@
     "sixTest": "k6 run stressTest/k6Script.js"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^6.4.1",
